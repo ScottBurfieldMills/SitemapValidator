@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SitemapValidator", "SitemapValidator\SitemapValidator.csproj", "{57C5EED0-D804-4057-8E07-20CDEDA048B6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SitemapValidator.Tests", "SitemapValidator.Tests\SitemapValidator.Tests.csproj", "{E07C0090-B83A-4F55-84E5-1D9B4652CEC1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{57C5EED0-D804-4057-8E07-20CDEDA048B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57C5EED0-D804-4057-8E07-20CDEDA048B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57C5EED0-D804-4057-8E07-20CDEDA048B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E07C0090-B83A-4F55-84E5-1D9B4652CEC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E07C0090-B83A-4F55-84E5-1D9B4652CEC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E07C0090-B83A-4F55-84E5-1D9B4652CEC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E07C0090-B83A-4F55-84E5-1D9B4652CEC1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
