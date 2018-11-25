@@ -12,7 +12,11 @@ SitemapValidator.exe -s https://example.com/sitemap.xml -c 200 -v -d 1000 -e tes
 Breakdown
 
 "-s" Url to sitemap
+
 "-c" Expected HTTP Status Code
+
 "-v" Verbose logging
+
 "-d" Delay in miliseconds before each request
+
 "-e" Export CSV filename 
