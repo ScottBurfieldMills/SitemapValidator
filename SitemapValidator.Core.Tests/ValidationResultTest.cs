@@ -1,24 +1,23 @@
-﻿using NUnit.Framework;
+﻿using Xunit;
 
-namespace SitemapValidator.Tests
+namespace SitemapValidator.Core.Tests
 {
-    [TestFixture]
     public class ValidationResultTest
     {
-        [Test]
+        [Fact]
         public void ShouldVerifyIfStatusCodeIsSame()
         {
             var result = new ValidationResult("http://scottbm.me", 200, 200);
-            
-            Assert.IsTrue(result.Verify());
+
+            Assert.True(result.Verify());
         }
 
-        [Test]
+        [Fact]
         public void ShouldVerifyIfStatusCodeIsDifferent()
         {
             var result = new ValidationResult("http://scottbm.me", 200, 503);
 
-            Assert.IsFalse(result.Verify());
+            Assert.False(result.Verify());
         }
     }
 }

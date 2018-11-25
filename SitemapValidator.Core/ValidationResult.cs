@@ -1,4 +1,4 @@
-﻿namespace SitemapValidator
+﻿namespace SitemapValidator.Core
 {
     public class ValidationResult
     {

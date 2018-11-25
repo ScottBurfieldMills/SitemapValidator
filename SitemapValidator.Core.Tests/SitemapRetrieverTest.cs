@@ -1,17 +1,16 @@
-﻿using System.Net.Http;
-using NUnit.Framework;
-using RichardSzalay.MockHttp;
+﻿using RichardSzalay.MockHttp;
+using System.Net.Http;
+using Xunit;
 
-namespace SitemapValidator.Tests
+namespace SitemapValidator.Core.Tests
 {
-    [TestFixture]
     public class SitemapRetrieverTest
     {
-        [Test]
+        [Fact]
         public void Test()
         {
             var httpClient = GetMockHttpClient("http://scottbm.me/sitemap.xml",
-                @"<?xml version=""1.0"" encoding=""UTF-8""?>
+     @"<?xml version=""1.0"" encoding=""UTF-8""?>
 <urlset xmlns=""http://www.sitemaps.org/schemas/sitemap/0.9"">
 <url>
 <loc>http://scottbm.me/</loc>
@@ -24,7 +23,7 @@ namespace SitemapValidator.Tests
 
             var sitemap = retriever.Retrieve("http://scottbm.me/sitemap.xml");
 
-            Assert.AreEqual(1, sitemap.Urls.Count);
+            Assert.Single(sitemap.Urls);
         }
 
         private HttpClient GetMockHttpClient(string url, string response)

@@ -1,31 +1,33 @@
-﻿using System.Collections.Generic;
+﻿using Moq;
+using RichardSzalay.MockHttp;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using NUnit.Framework;
-using RichardSzalay.MockHttp;
+using Xunit;
 
-namespace SitemapValidator.Tests
+namespace SitemapValidator.Core.Tests
 {
-    [TestFixture]
     public class SitemapValidatorTest
     {
-        [Test]
+        [Fact]
         public void Test()
         {
             var mockHttp = new MockHttpMessageHandler();
             mockHttp.When("http://scottbm.me")
-                .Respond(HttpStatusCode.OK, "text/html", "");
+                    .Respond(HttpStatusCode.OK, "text/html", "");
 
             var httpClient = new HttpClient(mockHttp);
 
-            var validator = new SitemapValidator(httpClient);
+            var mockProgressUpdater = new Mock<IProgressUpdater>();
+
+            var validator = new Validator(httpClient, mockProgressUpdater.Object);
 
             var sitemap = new Sitemap(new List<string> { "http://scottbm.me/" });
 
             var results = validator.Validate(sitemap, new Options { ExpectedStatusCode = 200 });
 
-            Assert.IsTrue(results.First().Verify());
+            Assert.True(results.First().Verify());
         }
     }
 }

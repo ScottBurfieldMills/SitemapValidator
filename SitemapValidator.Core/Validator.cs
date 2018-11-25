@@ -2,35 +2,41 @@
 using System.Net.Http;
 using System.Threading;
 
-namespace SitemapValidator
+namespace SitemapValidator.Core
 {
-    public class SitemapValidator
+    public class Validator
     {
         private readonly HttpClient _httpClient;
+        private readonly IProgressUpdater _progressUpdater;
 
-        public SitemapValidator(HttpClient httpClient)
+        public Validator(HttpClient httpClient, IProgressUpdater progressUpdater)
         {
             _httpClient = httpClient;
+            _progressUpdater = progressUpdater;
         }
 
         public List<ValidationResult> Validate(Sitemap sitemap, Options options)
         {
-            SitemapLogger.Log("Validating " + sitemap.Urls.Count + " urls");
-
             var results = new List<ValidationResult>();
 
-            foreach (var url in sitemap.Urls)
+            for (var i = 0; i < sitemap.Urls.Count; i++)
             {
-                DelayRequest(options.Delay);
+                _progressUpdater.UpdateStatusText($"Validating {i + 1}/{sitemap.Urls.Count}");
 
-                var result = ValidateUrl(options.ExpectedStatusCode, url);
-
-                SitemapLogger.Log(result, options.Verbose);
-
+                var result = ValidateUrl(sitemap.Urls[i], options.Delay, options.ExpectedStatusCode);
                 results.Add(result);
+
+                _progressUpdater.Log(result, options.Verbose);
             }
 
             return results;
+        }
+
+        private ValidationResult ValidateUrl(string url, int delay, int expectedStatusCode)
+        {
+            DelayRequest(delay);
+
+            return ValidateUrl(expectedStatusCode, url);
         }
 
         private ValidationResult ValidateUrl(int expectedStatusCode, string url)

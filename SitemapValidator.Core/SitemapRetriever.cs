@@ -2,7 +2,7 @@
 using System.Net.Http;
 using System.Xml;
 
-namespace SitemapValidator
+namespace SitemapValidator.Core
 {
     public class SitemapRetriever
     {
