@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -59,9 +59,9 @@ namespace SitemapValidator
 
         static HttpClient GetHttpClient()
         {
-            // Some backend servers use UA and can fail if it is not present
             var httpClient = new HttpClient();
 
+            // Some backend servers use UA and can fail if it is not present
             httpClient.DefaultRequestHeaders.Add("User-Agent",
                 @"Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.2; 
             WOW64; Trident / 6.0)");
